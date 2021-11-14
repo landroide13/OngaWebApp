@@ -1,0 +1,35 @@
+
+/* Sticky Footer */
+
+html,
+body {
+  height: 100%;
+}
+
+#page-content {
+  flex: 1 0 auto;
+}
+
+li{
+  list-style: none;
+}
+
+tr{
+    border-top: hidden;
+    border-bottom: hidden;
+}
+
+.not{
+  display: none;
+}
+
+#btn{
+  display: none;
+}
+
+/* .show{
+  display: block;
+} */
+
+
+
