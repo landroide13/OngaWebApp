@@ -17,40 +17,38 @@ class FormController{
         return $response;
     } 
 
-    /*
 
-    static public function ctrBooking(){
+    static public function ctrBook(){
 
-        if(isset($_POST[''])}){
-              $table = '';
+        if(isset($_POST['room'])){
+              $table = 'book';
               $data = array(
-                  "" => $_POST[''],
-                  "" => $_POST[''],
-                  "" => $_POST[''],
-                  "" => $_POST['']
-              )
-                  $response = ModelForms::mdlBooking($data, $table);
+                  "room" => $_POST['room'],
+                  "checkin" => $_POST['checkin'],
+                  "checkout" => $_POST['checkout'],
+                  "first_name" => $_POST['first_name'],
+                  "last_name" => $_POST['last_name'],
+                  "extras" => $_POST['extras'],
+              );
+            $response = ModelForms::mdlBook($data, $table);
           }
-          return $response;
-      } 
+        return $response;
+    } 
 
     
-      static public function ctrRoom(){
+    static public function ctrRoom(){
 
-        if(isset($_POST[''])}){
-              $table = '';
+        if(isset($_POST['name'])){
+              $table = 'room';
               $data = array(
-                  "" => $_POST[''],
-                  "" => $_POST[''],
-                  "" => $_POST[''],
-                  "" => $_POST['']
-              )
-                  $response = ModelForms::mdlBooking($data, $table);
-          }
-          return $response;
-      } 
-
-*/
+                  "name" => $_POST['name'],
+                  "description" => $_POST['description'],
+                  "type" => $_POST['type'],
+              );
+            $response = ModelForms::mdlRoom($data, $table);
+        }
+        return $response;
+    } 
 
 }
 

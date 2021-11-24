@@ -6,12 +6,16 @@
 <section class="container py-2 sectionA">
 
   <div class="card col-md-8 offset-md-2 py-4 px-2 text-white bg-dark">
-    
+
     <form method="post">
       <h5>Make Booking</h5>
       <div class="py-2">
-        <label class="form-label">Room</label>
-        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+        <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
+          <option value="aruba">Aruba</option>
+          <option value="medi">Mediterranian</option>
+          <option value="bahia">Bahia</option>
+          <option value="bali">Bali</option>
+        </select>
       </div>
       <div class="py-2">
         <label for="exampleInputEmail1" class="form-label">Check In Date</label>
@@ -33,6 +37,8 @@
         <label for="exampleFormControlTextarea1" class="form-label">Booking Extras</label>
         <textarea class="form-control" id="exampleFormControlTextarea1" name="extras" rows="3"></textarea>
       </div>
+
+      
       
       <div class="py-2">
         <button type="submit" class="btn btn-info">Add</button>
@@ -168,6 +174,10 @@
 
 
 </section>
+
+<?php
+  $book = FormController::ctrBook();
+?>
 
 </div>
 

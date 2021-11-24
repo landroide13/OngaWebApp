@@ -25,6 +25,47 @@ require_once 'connection.php';
 
         }
 
+        static public function mdlBook($table, $data){
+
+            $stmt = Connection::connect() -> prepare("INSERT INTO $table(room, checkin, checkout, first_name, last_name, extras) VALUES (:room, :checkin, :checkout, :first_name, :last_name, :extras)");
+            
+            $stmt -> bindParam(":room", $data['room'], PDO::PARAM_STR);
+            $stmt -> bindParam(":checkin", $data['checkin'], PDO::PARAM_STR);
+            $stmt -> bindParam(":checkout", $data['checkout'], PDO::PARAM_STR);
+            $stmt -> bindParam(":first_name", $data['first_name'], PDO::PARAM_STR);
+            $stmt -> bindParam(":last_name", $data['last_name'], PDO::PARAM_STR);
+            $stmt -> bindParam(":extras", $data['extras'], PDO::PARAM_STR);
+
+            if($stmt -> execute()){
+               return 'Ok';
+            }else{
+                print_r(Connection::connect()-> errorInfo());
+            }
+
+            $stmt -> close();
+            $stmt = null;
+
+        }
+
+        static public function mdlRoom($table, $data){
+
+            $stmt = Connection::connect() -> prepare("INSERT INTO $table(name, description, type) VALUES (:name, :description, :type)");
+            
+            $stmt -> bindParam(":name", $data['name'], PDO::PARAM_STR);
+            $stmt -> bindParam(":description", $data['description'], PDO::PARAM_STR);
+            $stmt -> bindParam(":type", $data['type'], PDO::PARAM_STR);
+
+            if($stmt -> execute()){
+               return 'Ok';
+            }else{
+                print_r(Connection::connect()-> errorInfo());
+            }
+
+            $stmt -> close();
+            $stmt = null;
+
+        }
+
 
         // Get Method for All.
         static public function mdlGet($table){
