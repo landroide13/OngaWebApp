@@ -50,6 +50,28 @@ class FormController{
         return $response;
     } 
 
+
+    static public function getRooms(){
+        $table = 'room';
+        $answer = ModelForms::mdlGet($table);
+
+        return $answer;
+    }
+
+    static public function getBook(){
+        $table = 'book';
+        $answer = ModelForms::mdlGet($table);
+
+        return $answer;
+    }
+
+    static public function getCustomer(){
+        $table = 'register';
+        $answer = ModelForms::mdlGet($table);
+
+        return $answer;
+    }
+
 }
 
 

@@ -1,5 +1,7 @@
 
-
+<?php
+    $rooms = FormController::getRooms();
+?>
 
  <div id="page-content" class="container py-4 wrapper">
 
@@ -19,30 +21,33 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form action="">
-                <div class="mb-3">
-                    <label class="form-label">Room Name</label>
-                    <input type="name" class="form-control">
-                </div>
-                <div class="mb-3">
-                    <label for="exampleFormControlTextarea1" class="form-label">Description</label>
-                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-                </div>
-                <h5>Room Type</h5>
-                <div class="mb-3 form-check">
-                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                    <label class="form-check-label" for="exampleCheck1">Double</label>
-                </div>
-                <div class="mb-3 form-check">
-                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                    <label class="form-check-label" for="exampleCheck1">King</label>
-                </div>
-                <div class="mb-3 form-check">
-                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                    <label class="form-check-label" for="exampleCheck1">Super King</label>
-                </div>
+                <form method="post" action="">
+                    <div class="mb-3">
+                        <label class="form-label">Room Name</label>
+                        <input type="name" name="name" class="form-control">
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleFormControlTextarea1" class="form-label">Description</label>
+                        <textarea class="form-control" name="description" id="exampleFormControlTextarea1" rows="3"></textarea>
+                    </div>
+                    <h5>Room Type</h5>
+                    <div class="mb-3 form-check">
+                        <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                        <label class="form-check-label" name="db" for="exampleCheck1">Double</label>
+                    </div>
+                    <div class="mb-3 form-check">
+                        <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                        <label class="form-check-label" name="k" for="exampleCheck1">King</label>
+                    </div>
+                    <div class="mb-3 form-check">
+                        <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                        <label class="form-check-label" name="SK" for="exampleCheck1">Super King</label>
+                    </div>
 
-                <button type="submit" class="btn btn-info">Create Room</button>
+                    <button type="submit" class="btn btn-info">Create Room</button>
+                <?php
+                    $book = FormController::ctrRoom();
+                ?>
 
                 </form>
             
@@ -71,36 +76,23 @@
         </tr>
         </thead>
         <tbody>
-        <tr>
-            <th scope="row">1</th>
-            <td>Aruba</td>
-            <td>Double</td>
-            <td>
-            <button type="button" class="btn btn-info"><i class="fas fa-info-circle"></i></button>
-            <a type="button" href="./roomUpdate.html" class="btn btn-warning"><i class="fas fa-edit"></i></a>
-            <button type="button" class="btn btn-danger"><i class="fas fa-trash"></i></button>
-            </td>
-        </tr>
-        <tr>
-            <th scope="row">2</th>
-            <td>Mediterranean</td>
-            <td>King</td>
-            <td>
-            <button type="button" class="btn btn-info"><i class="fas fa-info-circle"></i></button>
-            <a type="button" href="./roomUpdate.html" class="btn btn-warning"><i class="fas fa-edit"></i></a>
-            <button type="button" class="btn btn-danger"><i class="fas fa-trash"></i></button>
-            </td>
-        </tr>
-        <tr>
-            <th scope="row">3</th>
-            <td>Bahia</td>
-            <td>Super King</td>
-            <td>
-            <button type="button" class="btn btn-info"><i class="fas fa-info-circle"></i></button>
-            <a type="button" href="./roomUpdate.html" class="btn btn-warning"><i class="fas fa-edit"></i></a>
-            <button type="button" class="btn btn-danger"><i class="fas fa-trash"></i></button>
-            </td>
-        </tr>
+       
+        <?php foreach($rooms as $key => $value): ?>
+
+            <tr>
+                <th scope="row">1</th>
+                <td><?php echo $value['name']  ?></td>
+                <td><?php echo $value['type']  ?></td>
+                <td>
+                <button type="button" class="btn btn-info"><i class="fas fa-info-circle"></i></button>
+                <a type="button" href="./roomUpdate.html" class="btn btn-warning"><i class="fas fa-edit"></i></a>
+                <button type="button" class="btn btn-danger"><i class="fas fa-trash"></i></button>
+                </td>
+            </tr>
+
+
+
+        <?php endforeach ?>    
         </tbody>
     </table>
 
