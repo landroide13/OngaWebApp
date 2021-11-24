@@ -11,7 +11,7 @@
     <?php include'styles/style.css'; ?>
   </style>
   
-  <link rel="stylesheet" href="styles/style.php">
+ 
   <title alignt-text="center">Bed and Breakfast</title>
 </head>
 <body class="d-flex flex-column">
@@ -33,35 +33,55 @@
         <li class="nav-item">
           <a class="nav-link active text-black" aria-current="page" href="./index.php?page=home">Home</a>
         </li>
+      <?php else: ?>
+      <li class="nav-item">
+          <a class="nav-link text-white" aria-current="page" href="./index.php?page=home">Home</a>
+        </li>
       <?php endif ?> 
 
-      <?php if($_GET['page'] == 'register'): ?> 
+      <?php if($_GET['page'] == 'rooms'): ?> 
         <li class="nav-item">
+          <a class="nav-link active text-black" href="./index.php?page=rooms">Rooms</a>
+        </li>
+      <?php else: ?>
+      <li class="nav-item">
           <a class="nav-link text-white" href="./index.php?page=rooms">Rooms</a>
         </li>
       <?php endif ?>
 
-      <?php if($_GET['page'] == 'register'): ?>
+      <?php if($_GET['page'] == 'book'): ?>
         <li class="nav-item">
+          <a class="nav-link active text-black" href="./index.php?page=book">Book</a>
+        </li>
+      <?php else: ?>
+      <li class="nav-item">
           <a class="nav-link text-white" href="./index.php?page=book">Book</a>
         </li>
       <?php endif ?>
 
       <?php if($_GET['page'] == 'register'): ?>
         <li class="nav-item">
+          <a class="nav-link text-black active" href="./index.php?page=register">Register</a>
+        </li>
+      <?php else: ?>
+      <li class="nav-item">
           <a class="nav-link text-white" href="./index.php?page=register">Register</a>
         </li>
       <?php endif ?>
 
-      <?php if($_GET['page'] == 'register'): ?>
+      <?php if($_GET['page'] == 'login'): ?>
         <li class="nav-item">
+          <a class="nav-link text-black active" href="./index.php?page=login">Login</a>
+        </li>
+      <?php else: ?>
+      <li class="nav-item">
           <a class="nav-link text-white" href="./index.php?page=login">Login</a>
         </li>
       <?php endif ?>
 
     <?php else: ?> 
       <li class="nav-item">
-        <a class="nav-link active text-black" aria-current="page" href="./index.php?page=home">Home</a>
+        <a class="nav-link active" aria-current="page" href="./index.php?page=home">Home</a>
       </li>
       <li class="nav-item">
         <a class="nav-link text-white" href="./index.php?page=rooms">Rooms</a>
@@ -78,23 +98,21 @@
     <?php endif ?>
   </ul>
 
-  <div id="page-content" class="container py-4 wrapper">
+  <?php
 
-    <div class="card">
-      <div class="card-header">
-        <h3>Welcome to Ongaonga B&B</h3> 
-      </div>
-      <div class="card-body">
-        <h5 class="card-title">Dashboard</h5>
-        <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam natus sit repellat voluptates aperiam quibusdam.</p>
-        <a href="./index.php?page=home" class="btn btn-info">Start Session</a>
-      </div>
-    </div>
+    if(isset($_GET['page'])){
+      if($_GET['page'] == 'home' || $_GET['page'] == 'rooms' || $_GET['page'] == 'book' || $_GET['page'] == 'register' || $_GET['page'] == 'login'  ){
+        include 'pages/'.$_GET['page'].'.php';
+      }else{
+        include 'pages/404.php';
+      }
+    }else{
+      include 'pages/home.php';
+    }
 
-  </div>
+  ?>
 
-
-  <footer class="flex-shrink-0 py-3 bg-dark text-white">
+<footer class="flex-shrink-0 py-3 bg-dark text-white">
     <div class="container">
       <h4>Follow Us</h4>
       <ul class="nav flex-row">
@@ -107,19 +125,6 @@
       </ul>
     </div>  
   </footer>
-
-  <?php
-
-    if(isset($_GET['page'])){
-      if($_GET['page'] == 'home' || $_GET['page'] == 'rooms' || $_GET['page'] == 'book' || $_GET['page'] == 'register' || $_GET['page'] == 'login'  ){
-        include 'pages/'.$_GET['page'].'.php';
-      }else{
-        include 'pages/404.php';
-      }
-    }else{
-      include 'pages/home.php';
-    }
-  ?>
 
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
