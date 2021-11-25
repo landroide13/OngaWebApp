@@ -38,7 +38,12 @@
         <textarea class="form-control" id="exampleFormControlTextarea1" name="extras" rows="3"></textarea>
       </div>
 
+      <?php
       
+        $booking = FormController::ctrBook();
+        echo $booking;
+        
+      ?>
       
       <div class="py-2">
         <button type="submit" class="btn btn-info">Add</button>

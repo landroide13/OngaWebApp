@@ -65,7 +65,7 @@
       <?php foreach($customers as $key => $value): ?>
 
         <tr>
-          <th scope="row">2</th>
+          <th scope="row"><?php echo $value['user_id']  ?></th>
           <td><?php echo $value['first_name']  ?></td>
           <td><?php echo $value['last_name']  ?></td>
           <td><?php echo $value['email']  ?></td>
