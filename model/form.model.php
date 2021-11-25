@@ -68,14 +68,28 @@ require_once 'connection.php';
 
 
         // Get Method for All.
-        static public function mdlGet($table){
+        static public function mdlGet($table, $item, $value){
 
-            $stmt = Connection::connect() -> prepare("SELECT * FROM $table");
+            if($item == null && $value == null){
+
+                $stmt = Connection::connect() -> prepare("SELECT * FROM $table");
         
-            $stmt -> execute();
+                $stmt -> execute();
+            
+                return $stmt -> fetchAll();
+
+            }else{
+
+                $stmt = Connection::connect() -> prepare("SELECT * FROM $table WHERE $item = :$item");
+
+                $stmt -> bindParam(":".$item, $value, PDO::PARAM_STR);
         
-            return $stmt -> fetchAll();
+                $stmt -> execute();
         
+                return $stmt -> fetch();
+
+            }
+
             $stmt -> close();
             $stmt = null;
           }

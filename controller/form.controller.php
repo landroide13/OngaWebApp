@@ -48,26 +48,61 @@ class FormController{
             $response = ModelForms::mdlRoom($data, $table);
         }
         return $response;
-    } 
+    }
+    
+    public function ctrLogin(){
+        if(isset($_POST['email'])){
+
+            $table = 'register';
+            $item = 'email';
+            $value = $_POST['email'];
+
+            $answer = ModelForms::mdlGet($table, $item, $value);
+
+            if($answer['email'] == $_POST['email'] && $answer['password'] == $_POST['password']){
+
+                echo '<script>
+                        if(window.history.replaceState){
+                            window.history.replaceState(null, null, window.location.href);
+                        }
+
+                        window.location = "./index.php?page=book";
+                     
+                      </script>';
+
+            }else{
+
+                echo '<script>
+                        if(window.history.replaceState){
+                            window.history.replaceState(null, null, window.location.href);
+                        }
+                     </script>';
+
+                echo '<div class="alert alert-danger">Error, wrong user or password</div>';     
+            };
+
+
+        }
+    }
 
 
     static public function getRooms(){
         $table = 'room';
-        $answer = ModelForms::mdlGet($table);
+        $answer = ModelForms::mdlGet($table, null, null);
 
         return $answer;
     }
 
     static public function getBook(){
         $table = 'book';
-        $answer = ModelForms::mdlGet($table);
+        $answer = ModelForms::mdlGet($table, null, null);
 
         return $answer;
     }
 
     static public function getCustomer(){
         $table = 'register';
-        $answer = ModelForms::mdlGet($table);
+        $answer = ModelForms::mdlGet($table, null, null);
 
         return $answer;
     }
