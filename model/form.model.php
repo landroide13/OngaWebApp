@@ -20,7 +20,7 @@ require_once 'connection.php';
                 print_r(Connection::connect()-> errorInfo());
             }
 
-            $stmt -> close();
+            $stmt -> close(); 
             $stmt = null;
 
         }

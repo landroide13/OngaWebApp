@@ -61,6 +61,9 @@ class FormController{
 
             if($answer['email'] == $_POST['email'] && $answer['password'] == $_POST['password']){
 
+
+                // $_SESSION['login'] = 'ok';
+
                 echo '<script>
                         if(window.history.replaceState){
                             window.history.replaceState(null, null, window.location.href);
@@ -81,10 +84,8 @@ class FormController{
                 echo '<div class="alert alert-danger">Error, wrong user or password</div>';     
             };
 
-
         }
     }
-
 
     static public function getRooms(){
         $table = 'room';
