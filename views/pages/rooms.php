@@ -96,7 +96,7 @@
         <?php foreach($rooms as $key => $value): ?>
 
             <tr>
-                <th scope="row">1</th>
+                <th scope="row"><?php echo $value['room_id']  ?></th>
                 <td><?php echo $value['name']  ?></td>
                 <td><?php echo $value['type']  ?></td>
                 <td>

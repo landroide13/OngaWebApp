@@ -1,5 +1,7 @@
 
-
+<?php
+  $customers = FormController::getCustomer();
+?>
 
 <div id="page-content" class="wrapper d-flex flex-row">
 
@@ -59,50 +61,24 @@
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <th scope="row">1</th>
-        <td>Eltro</td>
-        <td>Lazo</td>
-        <td>eltro@nz.co</td>
-        <td>
-          <button type="button" class="btn btn-info"><i class="fas fa-info-circle"></i></button>
-          <a type="button" href="./edit.html" class="btn btn-warning"><i class="fas fa-edit"></i></a>
-          <button type="button" class="btn btn-danger"><i class="fas fa-trash"></i></button>
-        </td>
-      </tr>
-      <tr>
-        <th scope="row">2</th>
-        <td>John</td>
-        <td>King</td>
-        <td>john@nz.co</td>
-        <td>
-          <button type="button" class="btn btn-info"><i class="fas fa-info-circle"></i></button>
-          <a type="button" href="./edit.html" class="btn btn-warning"><i class="fas fa-edit"></i></a>
-          <button type="button" class="btn btn-danger"><i class="fas fa-trash"></i></button>
-        </td>
-      </tr>
-      <tr>
-        <th scope="row">3</th>
-        <td>Peter</td>
-        <td>Griffin</td>
-        <td>pete@nz.co</td>
-        <td>
-          <button type="button" class="btn btn-info"><i class="fas fa-info-circle"></i></button>
-          <a type="button" href="./edit.html" class="btn btn-warning"><i class="fas fa-edit"></i></a>
-          <button type="button" class="btn btn-danger"><i class="fas fa-trash"></i></button>
-        </td>
-      </tr>
-      <tr>
-        <th scope="row">3</th>
-        <td>Peter</td>
-        <td>Griffin</td>
-        <td>pete@nz.co</td>
-        <td>
-          <button type="button" class="btn btn-info"><i class="fas fa-info-circle"></i></button>
-          <a type="button" href="./edit.html" class="btn btn-warning"><i class="fas fa-edit"></i></a>
-          <button type="button" class="btn btn-danger"><i class="fas fa-trash"></i></button>
-        </td>
-      </tr>
+      
+      <?php foreach($customers as $key => $value): ?>
+
+        <tr>
+          <th scope="row">2</th>
+          <td><?php echo $value['first_name']  ?></td>
+          <td><?php echo $value['last_name']  ?></td>
+          <td><?php echo $value['email']  ?></td>
+          <td>
+            <button type="button" class="btn btn-info"><i class="fas fa-info-circle"></i></button>
+            <a type="button" href="./edit.html" class="btn btn-warning"><i class="fas fa-edit"></i></a>
+            <button type="button" class="btn btn-danger"><i class="fas fa-trash"></i></button>
+          </td>
+        </tr>
+        
+      <?php endforeach ?>
+      
+      
     </tbody>
   </table>
 
