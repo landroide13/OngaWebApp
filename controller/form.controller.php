@@ -20,18 +20,28 @@ class FormController{
 
     static public function ctrBook(){
 
-        if(isset($_POST['room'])){
+        if(isset($_POST['submit'])){
               $table = 'book';
+
+              //Change Format date
+
+              $dateIn = $_POST['checkin'];
+              $newDateIn = str_replace('/', '-', $dateIn); 
+
+              $dateOut = $_POST['checkout'];
+              $newDateOut = str_replace('/', '-', $dateOut); 
+
               $data = array(
-                  "room" => $_POST['room'],
-                  "checkin" => $_POST['checkin'],
-                  "checkout" => $_POST['checkout'],
+                  "room_name" => $_POST['roomName'],
+                  "checkin" => date("Y-m-d", strtotime($newDateIn)),
+                  "checkout" => date("Y-m-d" , strtotime($newDateOut)),
                   "first_name" => $_POST['first_name'],
                   "last_name" => $_POST['last_name'],
                   "extras" => $_POST['extras'],
               );
-            $response = ModelForms::mdlBook($data, $table);
+            $response = ModelForms::mdlBook($table, $data);
           }
+          
         return $response;
     } 
 
@@ -60,7 +70,6 @@ class FormController{
             $answer = ModelForms::mdlGet($table, $item, $value);
 
             if($answer['email'] == $_POST['email'] && $answer['password'] == $_POST['password']){
-
 
                 // $_SESSION['login'] = 'ok';
 

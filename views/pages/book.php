@@ -1,4 +1,7 @@
-
+<?php
+ $rooms = FormController::getRooms();
+ $bookings = FormController::getBook();
+?>
 
 
  <div id="page-content" class="wrapper d-flex flex-row">
@@ -10,20 +13,24 @@
     <form method="post">
       <h5>Make Booking</h5>
       <div class="py-2">
-        <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
-          <option value="aruba">Aruba</option>
-          <option value="medi">Mediterranian</option>
-          <option value="bahia">Bahia</option>
-          <option value="bali">Bali</option>
+        <select class="form-select form-select-lg mb-3" name="roomName" aria-label=".form-select-lg example">
+          <option disabled selected>Choose a Room</option>
+
+           <?php foreach($rooms as $key => $value): ?>
+
+             <option value="<?php echo $value['name'] ?>" ><?php echo $value['name'] ?></option>
+             
+           <?php endforeach ?> 
+ 
         </select>
       </div>
       <div class="py-2">
         <label for="exampleInputEmail1" class="form-label">Check In Date</label>
-        <input type="date" class="form-control" name="checkin" id="exampleInputEmail1" aria-describedby="emailHelp">
+        <input type="date" class="form-control" name="checkin" id="checkin" aria-describedby="emailHelp">
       </div>
       <div class="py-2">
         <label for="exampleInputEmail1" class="form-label">Check Out Date</label>
-        <input type="date" class="form-control" name="checkout" id="exampleInputEmail1" aria-describedby="emailHelp">
+        <input type="date" class="form-control" name="checkout" id="checkout" aria-describedby="emailHelp">
       </div>
       <div class="py-2">
         <label for="exampleInputEmail1" class="form-label">Customer First Name</label>
@@ -79,36 +86,20 @@
           <a href="./deleteBook.html" type="button" class="btn btn-danger"><i class="fas fa-trash"></i></a>
         </td>
       </tr>
+
+      <?php foreach($bookings as $key => $value): ?>
       <tr>
-        <td>John King</td>
-        <td>Mediterranian</td>
-        <td>12/10/21</td>
+        <td><?php echo $value['first_name'] ." ". $value['last_name'] ?></td>
+        <td><?php echo $value['room_name']  ?></td>
+        <td><?php echo $value['checkin']  ?></td>
         <td>
           <a type="button" href="./bookInfo.html" class="btn btn-info"><i class="fas fa-info-circle"></i></a>
           <a type="button" href="./bookUpdate.html" class="btn btn-warning"><i class="fas fa-edit"></i></a>
           <a href="./deleteBook.html" type="button" class="btn btn-danger"><i class="fas fa-trash"></i></a>
         </td>
       </tr>
-      <tr>
-        <td>Peter Griffin</td>
-        <td>Bahia</td>
-        <td>12/10/21</td>
-        <td>
-          <a type="button" href="./bookInfo.html" class="btn btn-info"><i class="fas fa-info-circle"></i></a>
-          <a type="button" href="./bookUpdate.html" class="btn btn-warning"><i class="fas fa-edit"></i></a>
-          <a href="./deleteBook.html" type="button" class="btn btn-danger"><i class="fas fa-trash"></i></a>
-        </td>
-      </tr>
-      <tr>
-        <td>Peter Griffin</td>
-        <td>Bahia</td>
-        <td>12/10/21</td>
-        <td>
-          <a type="button" href="./bookInfo.html" class="btn btn-info"><i class="fas fa-info-circle"></i></a>
-          <a type="button" href="./bookUpdate.html" class="btn btn-warning"><i class="fas fa-edit"></i></a>
-          <a href="./deleteBook.html" type="button" class="btn btn-danger"><i class="fas fa-trash"></i></a>
-        </td>
-      </tr>
+      <?php endforeach ?>
+
     </tbody>
   </table>
 
@@ -179,10 +170,6 @@
 
 
 </section>
-
-<?php
-  $book = FormController::ctrBook();
-?>
 
 </div>
 
