@@ -3,6 +3,22 @@
  $bookings = FormController::getBook();
 ?>
 
+<script>
+
+  $(function() {
+    $( "#checkin" ).datepicker({
+      dateFormat: 'yy-mm-dd',
+    });
+  });
+
+  $(function() {
+    $( "#checkout" ).datepicker({
+      dateFormat: 'yy-mm-dd',
+    });
+  });
+
+
+</script>
 
  <div id="page-content" class="wrapper d-flex flex-row">
 
@@ -10,53 +26,66 @@
 
   <div class="card col-md-8 offset-md-2 py-4 px-2 text-white bg-dark">
 
-    <form method="post">
+    <form method="POST">
       <h5>Make Booking</h5>
       <div class="py-2">
-        <select class="form-select form-select-lg mb-3" name="roomName" aria-label=".form-select-lg example">
+
+        <select class="form-select form-select-lg mb-3" name="roomName" required>
+
           <option disabled selected>Choose a Room</option>
+           <?php foreach($rooms as $key => $value): ?> 
 
-           <?php foreach($rooms as $key => $value): ?>
-
-             <option value="<?php echo $value['name'] ?>" ><?php echo $value['name'] ?></option>
+             <option type="text" value="<?php echo $value['name'] ?>"><?php echo $value['name'] ?></option>
              
-           <?php endforeach ?> 
- 
+           <?php endforeach ?>
         </select>
+
       </div>
-      <div class="py-2">
-        <label for="exampleInputEmail1" class="form-label">Check In Date</label>
-        <input type="date" class="form-control" name="checkin" id="checkin" aria-describedby="emailHelp">
+
+      <div class="py-2 picker">
+        <div class="input-group date" data-provide="datepicker">
+          <label for="exampleInputEmail1" class="form-label">Check In Date</label>
+            <input type="text" name="checkin" id="checkin" data-date-format="yyyy-mm-dd">
+            <div class="input-group-addon">
+                <span class="glyphicon glyphicon-th"></span>
+            </div>
+        </div>
       </div>
-      <div class="py-2">
-        <label for="exampleInputEmail1" class="form-label">Check Out Date</label>
-        <input type="date" class="form-control" name="checkout" id="checkout" aria-describedby="emailHelp">
+
+      <div class="py-2 picker">
+        <div class="input-group date" data-provide="datepicker">
+          <label for="exampleInputEmail1" class="form-label">Check Out Date</label>
+            <input type="text" name="checkout" id="checkout">
+            <div class="input-group-addon">
+                <span class="glyphicon glyphicon-th"></span>
+            </div>
+        </div>
       </div>
+
       <div class="py-2">
         <label for="exampleInputEmail1" class="form-label">Customer First Name</label>
-        <input type="text" class="form-control" name="firstName" id="exampleInputEmail1" aria-describedby="emailHelp">
+        <input type="text" class="form-control" name="firstName" id="exampleInputEmail1" required>
       </div>
       <div class="py-2">
         <label for="exampleInputEmail1" class="form-label">Customer Last Name</label>
-        <input type="text" class="form-control" name="lastName" id="exampleInputEmail1" aria-describedby="emailHelp">
+        <input type="text" class="form-control" name="lastName" id="exampleInputEmail1" required>
       </div>
       <div class="mb-3">
         <label for="exampleFormControlTextarea1" class="form-label">Booking Extras</label>
         <textarea class="form-control" id="exampleFormControlTextarea1" name="extras" rows="3"></textarea>
       </div>
 
-      <?php
-      
-        $booking = FormController::ctrBook();
-        echo $booking;
-        
-      ?>
-      
       <div class="py-2">
         <button type="submit" class="btn btn-info">Add</button>
       </div>
+
+      <?php
+        $booking = FormController::ctrBook();
+        print_r($booking);
+      ?>
       
     </form>
+
   </div>
 
 </section>
@@ -122,8 +151,9 @@
 
     <div class="col-md-4 py-2">
       <br>
-      <button type="submit" class="btn btn-info" id="btn"><i class="fas fa-search"></i></button>
+      <button type="submit" class="btn btn-info" id="btnSearch"><i class="fas fa-search"></i></button>
     </div>
+      
 
   </form>
 
@@ -162,7 +192,6 @@
       
 
     </tbody>
-
 
   </table>
 

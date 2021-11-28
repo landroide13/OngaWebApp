@@ -13,7 +13,7 @@ $("#btn").click(function () {
 
   $("#type1").load("./resources/rooms.html #t1");
   $("#type2").load("./resources/rooms.html #t2");
-  $("#type3").load("./resources/rooms.html #t3");
+  $("#type3").load("./resources/rooms.html #t3"); 
 
   $("#out1").load("./resources/rooms.html #o1");
   $("#out2").load("./resources/rooms.html #o2");

@@ -38,7 +38,6 @@ require_once 'connection.php';
 
             if($stmt -> execute()){
                return 'Ok';
-               echo $stmt;
             }else{
                 print_r(Connection::connect()-> errorInfo());
             }

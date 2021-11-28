@@ -23,9 +23,15 @@ tr{
   display: none;
 }
 
+div.picker div.date{
+  display: flex;
+  flex-direction: column;
+}
+
+/*
 #btn{
   display: none;
-}
+} */
 
 /* .show{
   display: block;

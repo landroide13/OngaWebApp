@@ -22,26 +22,29 @@ class FormController{
 
         if(isset($_POST['submit'])){
               $table = 'book';
-
+              $msg = 'Error';
+              $currenDate = date("d-m-Y"); 
               //Change Format date
+              $dateIn = date('Y-m-d', $_POST['checkin']);
+              $dateOut = date('Y-m-d', $_POST['checkout']); 
 
-              $dateIn = $_POST['checkin'];
-              $newDateIn = str_replace('/', '-', $dateIn); 
+              if($dateIn > $dateOut && $dateIn < $currenDate){
 
-              $dateOut = $_POST['checkout'];
-              $newDateOut = str_replace('/', '-', $dateOut); 
+                $msg .= " wrong chooise of dates, try again";
+                echo $msg;
 
-              $data = array(
+              }else{
+                $data = array(
                   "room_name" => $_POST['roomName'],
-                  "checkin" => date("Y-m-d", strtotime($newDateIn)),
-                  "checkout" => date("Y-m-d" , strtotime($newDateOut)),
+                  "checkin" => $_POST['checkin'],
+                  "checkout" => $_POST['checkout'],
                   "first_name" => $_POST['first_name'],
                   "last_name" => $_POST['last_name'],
                   "extras" => $_POST['extras'],
-              );
-            $response = ModelForms::mdlBook($table, $data);
-          }
-          
+                );
+                $response = ModelForms::mdlBook($table, $data);
+              }
+        }
         return $response;
     } 
 
@@ -55,7 +58,7 @@ class FormController{
                   "description" => $_POST['description'],
                   "type" => $_POST['type'],
               );
-            $response = ModelForms::mdlRoom($data, $table);
+            $response = ModelForms::mdlRoom($table, $data);
         }
         return $response;
     }
