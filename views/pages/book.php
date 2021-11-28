@@ -18,6 +18,57 @@
     });
   });
 
+  $(function() {
+    $( ".dateP" ).datepicker({
+      dateFormat: 'yy-mm-dd',
+    });
+  });
+
+  $(document).ready(function (){
+        $('#form1').submit(function(event){
+            var formData = {
+              sqa: $('#from').val(),
+              sqb: $('#to').val()
+            };
+            $.ajax({
+              type: "POST",
+              url: "book.php",
+              data: formData,
+              dataType: "json",
+              encode: true,
+            }).done(function(data){
+              var tbl = document.getElementById("t1"); //find the table in the HTML  
+              var rowCount = tbl.rows.length;
+              for (var i = 1; i < rowCount; i++) {
+                //delete from the top - row 0 is the table header we keep
+                tbl.deleteRow(1); 
+              }          
+              //populate the table
+              //data.length is the size of our array
+              for (var i = 0; i < data.length; i++) {
+                // var rid = data[i]['roomID'];
+                var rn    = data[i]['room_name'];
+                var rt    = data[i]['type'];
+                            
+                //create a table row with four cells  
+                tr = tbl.insertRow(-1);
+                var tabCell = tr.insertCell(-1);
+                    tabCell.innerHTML = rid; //roomID
+                var tabCell = tr.insertCell(-1);
+                    tabCell.innerHTML = rn; //room name  
+                var tabCell = tr.insertCell(-1);
+                    tabCell.innerHTML = rt; //room type       
+                var tabCell = tr.insertCell(-1);
+                    tabCell.innerHTML = bd; //beds          
+                } 
+            });
+            event.preventDefault();
+        })
+    })
+
+
+
+
 
 </script>
 
@@ -110,9 +161,9 @@
   
       <?php foreach($bookings as $key => $value): ?>
         <tr>
-          <td><?php echo $value['first_name'] ." ". $value['last_name'] ?></td>
-          <td><?php echo $value['room_name']  ?></td>
-          <td><?php echo $value['checkin']  ?></td>
+          <td><?php echo $value['first_name'] ." ". $value['last_name']; ?></td>
+          <td><?php echo $value['room_name'];  ?></td>
+          <td><?php echo $value['checkin']; ?></td>
 
           <td class="btn-group">
             <a type="button" href="./bookInfo.html" class="btn btn-info"><i class="fas fa-info-circle"></i></a>
@@ -138,21 +189,21 @@
 
   <hr>
 
-  <form id="form1" class="row">
+  <form id="form1" class="row" method="post">
 
     <div class="col-md-4">
       <label for="exampleFormControlInput1" class="form-label">From</label>
-      <input type="date" class="form-control" id="from-date" onChange="activate()" placeholder="" required>
+      <input type="text" class="form-control dateP" id="from" required>
     </div>
 
     <div class="col-md-4">
       <label for="exampleFormControlInput1" class="form-label">To</label>
-      <input type="date" class="form-control" id="to-date" onChange="activate()" placeholder="" required>
+      <input type="text" class="form-control dateP" id="to" required>
     </div>
 
     <div class="col-md-4 py-2">
       <br>
-      <button type="submit" class="btn btn-info" id="btnSearch"><i class="fas fa-search"></i></button>
+      <button type="submit" class="btn btn-info"><i class="fas fa-search"></i></button>
     </div>
       
 
@@ -177,20 +228,6 @@
         <td id="type1"></td>
         <td id="out1"></td>
       </tr>
-
-      <tr>
-        <td id="room2"></td>
-        <td id="type2"></td>
-        <td id="out2"></td>
-      </tr>
-
-      <tr>
-        <td id="room3"></td>
-        <td id="type3"></td>
-        <td id="out3"></td>
-      </tr>
-
-      
 
     </tbody>
 

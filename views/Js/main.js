@@ -27,20 +27,20 @@
 // });
 
 
-$(function () {
-  checkIn = $("#checkin").datepicker();
-  checkOut = $("#checkout").datepicker();
-  console.log(checkIn, checkOut)
-  function getDate(element) {
-    var date;
-    try {
-      date = $.datepicker.parseDate(dateFormat, element.value);
-    } catch (error) {
-      date = null;
-    }
-    return date;
-  }
-});
+// $(function () {
+//   checkIn = $("#checkin").datepicker();
+//   checkOut = $("#checkout").datepicker();
+//   console.log(checkIn, checkOut)
+//   function getDate(element) {
+//     var date;
+//     try {
+//       date = $.datepicker.parseDate(dateFormat, element.value);
+//     } catch (error) {
+//       date = null;
+//     }
+//     return date;
+//   }
+// });
 
 
 
