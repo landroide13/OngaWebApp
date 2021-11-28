@@ -45,7 +45,7 @@
       <div class="py-2 picker">
         <div class="input-group date" data-provide="datepicker">
           <label for="exampleInputEmail1" class="form-label">Check In Date</label>
-            <input type="text" name="checkin" id="checkin" data-date-format="yyyy-mm-dd">
+            <input type="text" name="checkin" id="checkin">
             <div class="input-group-addon">
                 <span class="glyphicon glyphicon-th"></span>
             </div>

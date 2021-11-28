@@ -23,27 +23,27 @@ class FormController{
         if(isset($_POST['submit'])){
               $table = 'book';
               $msg = 'Error';
-              $currenDate = date("d-m-Y"); 
+              $currenDate = new Date(date("Y-m-d")); 
               //Change Format date
-              $dateIn = date('Y-m-d', $_POST['checkin']);
-              $dateOut = date('Y-m-d', $_POST['checkout']); 
+              $dateIn = new DateTime($_POST['checkin']);
+              $dateOut = new DateTime($_POST['checkout']); 
 
-              if($dateIn > $dateOut && $dateIn < $currenDate){
+            if($dateIn > $dateOut && $dateIn < $currenDate){
 
                 $msg .= " wrong chooise of dates, try again";
                 echo $msg;
 
-              }else{
+            }else{
                 $data = array(
                   "room_name" => $_POST['roomName'],
                   "checkin" => $_POST['checkin'],
                   "checkout" => $_POST['checkout'],
-                  "first_name" => $_POST['first_name'],
-                  "last_name" => $_POST['last_name'],
+                  "first_name" => $_POST['firstName'],
+                  "last_name" => $_POST['lastName'],
                   "extras" => $_POST['extras'],
                 );
                 $response = ModelForms::mdlBook($table, $data);
-              }
+            }
         }
         return $response;
     } 
