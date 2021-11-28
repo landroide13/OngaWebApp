@@ -117,7 +117,7 @@
   <?php
 
     if(isset($_GET['page'])){
-      if($_GET['page'] == 'home' || $_GET['page'] == 'rooms' || $_GET['page'] == 'book' || $_GET['page'] == 'register' || $_GET['page'] == 'login'  ){
+      if($_GET['page'] == 'home' || $_GET['page'] == 'rooms' || $_GET['page'] == 'book' || $_GET['page'] == 'register' || $_GET['page'] == 'login' || $_GET['page'] == 'updateBook'  ){
         include 'pages/'.$_GET['page'].'.php';
       }else{
         include 'pages/404.php';

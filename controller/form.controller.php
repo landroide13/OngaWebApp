@@ -7,7 +7,8 @@ class FormController{
       if(isset($_POST['firstName'])){
             $table = "register";
 
-            $data = array("first_name" => $_POST['firstName'],
+            $data = array(
+                "first_name" => $_POST['firstName'],
                 "last_name" => $_POST['lastName'],
                 "email" => $_POST['email'],
                 "password" => $_POST['pass'],
@@ -24,6 +25,7 @@ class FormController{
               $table = 'book';
               $msg = 'Error';
               $currenDate = new Date(date("Y-m-d")); 
+
               //Change Format date
               $dateIn = new DateTime($_POST['checkin']);
               $dateOut = new DateTime($_POST['checkout']); 
@@ -35,7 +37,7 @@ class FormController{
 
             }else{
                 $data = array(
-                  "room_name" => $_POST['roomName'],
+                  "room_name" => $_POST['room_name'],
                   "checkin" => $_POST['checkin'],
                   "checkout" => $_POST['checkout'],
                   "first_name" => $_POST['firstName'],
@@ -106,9 +108,9 @@ class FormController{
         return $answer;
     }
 
-    static public function getBook(){
+    static public function getBook($item, $value){
         $table = 'book';
-        $answer = ModelForms::mdlGet($table, null, null);
+        $answer = ModelForms::mdlGet($table, $item, $value);
 
         return $answer;
     }
@@ -118,6 +120,64 @@ class FormController{
         $answer = ModelForms::mdlGet($table, null, null);
 
         return $answer;
+    }
+
+    public function updateBook(){
+
+        if(isset($_POST['editroom_name'])){
+              $table = 'book';
+              $msg = 'Error';
+              $currenDate = new Date(date("Y-m-d")); 
+
+              //Change Format date
+              $dateIn = new DateTime($_POST['checkin']);
+              $dateOut = new DateTime($_POST['checkout']); 
+
+            if($dateIn > $dateOut && $dateIn < $currenDate){
+
+                $msg .= " wrong chooise of dates, try again";
+                echo $msg;
+
+            }else{
+                $data = array(
+                   "id" => $_POST['id_booking'],
+                  "room_name" => $_POST['editroom_name'],
+                  "checkin" => $_POST['editcheckin'],
+                  "checkout" => $_POST['editcheckout'],
+                  "first_name" => $_POST['editfirstName'],
+                  "last_name" => $_POST['editlastName'],
+                  "extras" => $_POST['editextras'],
+                );
+                $response = ModelForms::mdlUpdateBook($table, $data);
+            }
+        }
+
+        if($response == 'ok'){
+
+            echo '<script>
+                        if(window.history.replaceState){
+                            window.history.replaceState(null, null, window.location.href);
+                        }
+                     </script>';
+
+                echo '<div class="alert alert-success">Booking Updated</div>';     
+
+        }
+
+        return $response;
+
+    }
+
+    public function ctrDeleteBook(){
+        if(isset($_POST['deleteBook'])){
+
+            $table = 'book';
+            $value = $_POST['deleteBook'];
+
+            $response = ModelForms::mdlDeleteBook($table, $value);
+
+            return $response;
+        }
     }
 
 }

@@ -32,10 +32,10 @@ require_once 'connection.php';
             $stmt -> bindParam(":room_name", $data['room_name'], PDO::PARAM_STR);
             $stmt -> bindParam(":first_name", $data['first_name'], PDO::PARAM_STR);
             $stmt -> bindParam(":last_name", $data['last_name'], PDO::PARAM_STR);
-            $stmt -> bindParam(":extras", $data['extras'], PDO::PARAM_STR);
             $stmt -> bindParam(":checkin", $data['checkin'], PDO::PARAM_STR);
             $stmt -> bindParam(":checkout", $data['checkout'], PDO::PARAM_STR);
-
+            $stmt -> bindParam(":extras", $data['extras'], PDO::PARAM_STR);
+            
             if($stmt -> execute()){
                return 'Ok';
             }else{
@@ -95,9 +95,49 @@ require_once 'connection.php';
           }
 
 
+          static public function mdlUpdateBook($table, $data){ 
+
+            $stmt = Connection::connect() -> prepare("UPDATE $table SET room_name = :room_name, checkin = :checkin, checkout = :checkout, first_name = :first_name, last_name = :last_name, extras = :extras WHERE id = :id");
+            
+            $stmt -> bindParam(":room_name", $data['room_name'], PDO::PARAM_STR);
+            $stmt -> bindParam(":first_name", $data['first_name'], PDO::PARAM_STR);
+            $stmt -> bindParam(":last_name", $data['last_name'], PDO::PARAM_STR);
+            $stmt -> bindParam(":checkin", $data['checkin'], PDO::PARAM_STR);
+            $stmt -> bindParam(":checkout", $data['checkout'], PDO::PARAM_STR);
+            $stmt -> bindParam(":extras", $data['extras'], PDO::PARAM_STR);
+            $stmt -> bindParam(":id", $data['id'], PDO::PARAM_INT);
+            
+
+            if($stmt -> execute()){
+               return 'Ok';
+            }else{
+                print_r(Connection::connect()-> errorInfo());
+            }
+
+            $stmt -> close();
+            $stmt = null;
+
+        }
 
 
-        
+        static public function mdlDeleteBook($table, $value){ 
+
+            $stmt = Connection::connect() -> prepare("DELETE FROM $table WHERE id = :id");
+            
+            $stmt -> bindParam(":id", $value, PDO::PARAM_INT);
+            
+
+            if($stmt -> execute()){
+               return 'Ok';
+            }else{
+                print_r(Connection::connect()-> errorInfo());
+            }
+
+            $stmt -> close();
+            $stmt = null;
+
+        }
+
 
     }
 

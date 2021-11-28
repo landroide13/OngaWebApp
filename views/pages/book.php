@@ -1,6 +1,7 @@
 <?php
  $rooms = FormController::getRooms();
- $bookings = FormController::getBook();
+ $bookings = FormController::getBook(null, null);
+
 ?>
 
 <script>
@@ -30,7 +31,7 @@
       <h5>Make Booking</h5>
       <div class="py-2">
 
-        <select class="form-select form-select-lg mb-3" name="roomName" required>
+        <select class="form-select form-select-lg mb-3" name="room_name" required>
 
           <option disabled selected>Choose a Room</option>
            <?php foreach($rooms as $key => $value): ?> 
@@ -81,6 +82,7 @@
 
       <?php
         $booking = FormController::ctrBook();
+
         print_r($booking);
       ?>
       
@@ -105,28 +107,27 @@
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <td>Eltro Lazo</td>
-        <td>Aruba</td>
-        <td>12/10/21</td>
-        <td>
-          <a type="button" href="./bookInfo.html" class="btn btn-info"><i class="fas fa-info-circle"></i></a>
-          <a type="button" href="./bookUpdate.html" class="btn btn-warning"><i class="fas fa-edit"></i></a>
-          <a href="./deleteBook.html" type="button" class="btn btn-danger"><i class="fas fa-trash"></i></a>
-        </td>
-      </tr>
-
+  
       <?php foreach($bookings as $key => $value): ?>
-      <tr>
-        <td><?php echo $value['first_name'] ." ". $value['last_name'] ?></td>
-        <td><?php echo $value['room_name']  ?></td>
-        <td><?php echo $value['checkin']  ?></td>
-        <td>
-          <a type="button" href="./bookInfo.html" class="btn btn-info"><i class="fas fa-info-circle"></i></a>
-          <a type="button" href="./bookUpdate.html" class="btn btn-warning"><i class="fas fa-edit"></i></a>
-          <a href="./deleteBook.html" type="button" class="btn btn-danger"><i class="fas fa-trash"></i></a>
-        </td>
-      </tr>
+        <tr>
+          <td><?php echo $value['first_name'] ." ". $value['last_name'] ?></td>
+          <td><?php echo $value['room_name']  ?></td>
+          <td><?php echo $value['checkin']  ?></td>
+
+          <td class="btn-group">
+            <a type="button" href="./bookInfo.html" class="btn btn-info"><i class="fas fa-info-circle"></i></a>
+            <a type="button" href="./index.php?page=updateBook&id=<?php echo $value['id']; ?>" class="btn btn-warning"><i class="fas fa-edit"></i></a>
+            <form action="post">
+              <input type="hidden" class="form-control" name="deleteBook" value="<?php echo $value['id']; ?>">
+              <button type="submit" class="btn btn-danger"><i class="fas fa-trash"></i></a>
+              <?php
+                $deleteBook = new FormController;
+                $deleteBook -> ctrDeleteBook();
+              ?>
+            </form>
+          </td>
+
+        </tr>
       <?php endforeach ?>
 
     </tbody>
