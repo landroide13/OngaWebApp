@@ -120,7 +120,7 @@
       if($_GET['page'] == 'home' || $_GET['page'] == 'rooms' || $_GET['page'] == 'book' || $_GET['page'] == 'register' || 
       $_GET['page'] == 'login' || $_GET['page'] == 'updateBook' || $_GET['page'] == 'updateRegister' || 
       $_GET['page'] == 'deleteBook' || $_GET['page'] == 'showBook' || $_GET['page'] == 'showRoom' || $_GET['page'] == 'deleteRoom' ||
-      $_GET['page'] == 'showBook' || $_GET['page'] == 'showCustomer' || $_GET['page'] == 'deleteCustomer'){
+      $_GET['page'] == 'showBook' || $_GET['page'] == 'showRegister' || $_GET['page'] == 'deleteRegister'){
         include 'pages/'.$_GET['page'].'.php';
       }else{
         include 'pages/404.php';

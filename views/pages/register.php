@@ -1,6 +1,6 @@
 
 <?php
-  $customers = FormController::getCustomer();
+  $customers = FormController::getCustomer(null, null);
 ?>
 
 <div id="page-content" class="wrapper d-flex flex-row">
@@ -67,11 +67,14 @@
           <td><?php echo $value['first_name']  ?></td>
           <td><?php echo $value['last_name']  ?></td>
           <td><?php echo $value['email']  ?></td>
-          <td>
-            <button type="button" class="btn btn-info"><i class="fas fa-info-circle"></i></button>
-            <a type="button" href="./edit.html" class="btn btn-warning"><i class="fas fa-edit"></i></a>
-            <button type="button" class="btn btn-danger"><i class="fas fa-trash"></i></button>
+
+          <td class="btn-group">
+            <a type="button" href="./index.php?page=showRegister&id=<?php echo $value['user_id']; ?>"" class="btn btn-info"><i class="fas fa-info-circle"></i></a>
+            <a type="button" href="./index.php?page=updateRegister&id=<?php echo $value['user_id']; ?>" class="btn btn-warning"><i class="fas fa-edit"></i></a>
+              <input type="hidden" class="form-control" name="" value="<?php echo $value['user_id']; ?>">
+            <a type="button" class="btn btn-danger" href="./index.php?page=deleteRegister&id=<?php echo $value['user_id']; ?>"><i class="fas fa-trash"></i></a>
           </td>
+
         </tr>
         
       <?php endforeach ?>

@@ -115,9 +115,9 @@ class FormController{
         return $answer;
     }
 
-    static public function getCustomer(){
+    static public function getCustomer($item, $value){
         $table = 'register';
-        $answer = ModelForms::mdlGet($table, null, null);
+        $answer = ModelForms::mdlGet($table, $item, $value);
 
         return $answer;
     }

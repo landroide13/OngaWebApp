@@ -2,14 +2,14 @@
 
 <?php
 
-if(isset($_GET['id'])){
+if(isset($_GET['user_id'])){
 
-    $item = 'id';
-    $value = $_GET['id'];
+    $item = 'user_id';
+    $value = $_GET['user_id'];
 
     $customer = FormController::getCustomer($item, $value);
 
-    // print_r($booking[0]);
+    print_r($customer);
 
   }
 
@@ -21,7 +21,7 @@ if(isset($_GET['id'])){
 
     <div class="card text-white bg-dark">
       <div class="card-header">
-        <h5 class="card-title">Delete Customer #<?php echo $customer[0]; ?></div>
+        <h5 class="card-title">Delete Customer #<?php echo $customer[0]['user_id']; ?></div>
       </div>
       <ul class="list-group list-group-flush">
         <li class="list-group-item">Room: <?php echo $customer[1]; ?></li>
@@ -31,7 +31,7 @@ if(isset($_GET['id'])){
       </ul>
       <div class="card-body">
         <a type="submit" class="btn btn-info" href="./index.php?page=register">Back</a>
-        <a type="submit" class="btn btn-danger"> Delete </a>
+        <a type="submit" class="btn btn-danger">Delete</a>
       </div>
 
        <?php

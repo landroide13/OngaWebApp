@@ -1,14 +1,14 @@
 
 <?php
 
-if(isset($_GET['id'])){
+if(isset($_GET['user_id'])){
 
-    $item = 'id';
-    $value = $_GET['id'];
+    $item = 'user_id';
+    $value = $_GET['user_id'];
 
     $customer = FormController::getCustomer($item, $value);
 
-    // print_r($booking);
+    print_r($customer);
   }
 
 ?>
@@ -30,7 +30,7 @@ if(isset($_GET['id'])){
       </div>
       <div class="card-body">
         <a type="submit" class="btn btn-info" href="./index.php?page=book">Back</a>
-        <a type="submit" class="btn btn-danger" href="./index.php?page=deleteCustomer&id=<?php echo $customer[0]; ?>"> Delete </a>
+        <a type="submit" class="btn btn-danger" href="./index.php?page=deleteRegister&id=<?php echo $customer[0]; ?>"> Delete </a>
       </div>
     </div>
 

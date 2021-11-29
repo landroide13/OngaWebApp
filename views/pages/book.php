@@ -127,7 +127,7 @@
             <a type="button" class="btn btn-danger" href="./index.php?page=deleteBook&id=<?php echo $value['id']; ?>"><i class="fas fa-trash"></i></a>
           </td>
 
-        </tr>
+        </tr> 
       <?php endforeach ?>
 
     </tbody>
