@@ -24,52 +24,7 @@
     });
   });
 
-  $(document).ready(function (){
-        $('#form1').submit(function(event){
-            var formData = {
-              sqa: $('#from').val(),
-              sqb: $('#to').val()
-            };
-            $.ajax({
-              type: "POST",
-              url: "book.php",
-              data: formData,
-              dataType: "json",
-              encode: true,
-            }).done(function(data){
-              var tbl = document.getElementById("t1"); //find the table in the HTML  
-              var rowCount = tbl.rows.length;
-              for (var i = 1; i < rowCount; i++) {
-                //delete from the top - row 0 is the table header we keep
-                tbl.deleteRow(1); 
-              }          
-              //populate the table
-              //data.length is the size of our array
-              for (var i = 0; i < data.length; i++) {
-                // var rid = data[i]['roomID'];
-                var rn    = data[i]['room_name'];
-                var rt    = data[i]['type'];
-                            
-                //create a table row with four cells  
-                tr = tbl.insertRow(-1);
-                var tabCell = tr.insertCell(-1);
-                    tabCell.innerHTML = rid; //roomID
-                var tabCell = tr.insertCell(-1);
-                    tabCell.innerHTML = rn; //room name  
-                var tabCell = tr.insertCell(-1);
-                    tabCell.innerHTML = rt; //room type       
-                var tabCell = tr.insertCell(-1);
-                    tabCell.innerHTML = bd; //beds          
-                } 
-            });
-            event.preventDefault();
-        })
-    })
-
-
-
-
-
+  
 </script>
 
  <div id="page-content" class="wrapper d-flex flex-row">
@@ -82,7 +37,7 @@
       <h5>Make Booking</h5>
       <div class="py-2">
 
-        <select class="form-select form-select-lg mb-3" name="room_name" required>
+        <select class="form-select form-select-lg mb-3" name="roomName" required>
 
           <option disabled selected>Choose a Room</option>
            <?php foreach($rooms as $key => $value): ?> 
@@ -116,15 +71,15 @@
 
       <div class="py-2">
         <label for="exampleInputEmail1" class="form-label">Customer First Name</label>
-        <input type="text" class="form-control" name="firstName" id="exampleInputEmail1" required>
+        <input type="text" class="form-control" name="firstName"  required>
       </div>
       <div class="py-2">
         <label for="exampleInputEmail1" class="form-label">Customer Last Name</label>
-        <input type="text" class="form-control" name="lastName" id="exampleInputEmail1" required>
+        <input type="text" class="form-control" name="lastName"  required>
       </div>
       <div class="mb-3">
-        <label for="exampleFormControlTextarea1" class="form-label">Booking Extras</label>
-        <textarea class="form-control" id="exampleFormControlTextarea1" name="extras" rows="3"></textarea>
+        <label class="form-label">Booking Extras</label>
+        <textarea class="form-control"  name="extras" rows="3"></textarea>
       </div>
 
       <div class="py-2">
@@ -211,7 +166,7 @@
 
   <br>
 
-  <table id="t1" class="table table-hover not">
+  <table id="t1" class="table table-hover">
 
      <thead>
         <tr>
@@ -222,13 +177,7 @@
     </thead>
 
     <tbody>
-
-      <tr>
-        <td id="room1"></td>
-        <td id="type1"></td>
-        <td id="out1"></td>
-      </tr>
-
+      <tr></tr>
     </tbody>
 
   </table>

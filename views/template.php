@@ -21,7 +21,7 @@
   <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
   <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
   
-  <script src="./JS/main.js" type="text/javascript"></script>
+  
 
   <style>
     <?php include'styles/style.css'; ?>
@@ -117,7 +117,7 @@
   <?php
 
     if(isset($_GET['page'])){
-      if($_GET['page'] == 'home' || $_GET['page'] == 'rooms' || $_GET['page'] == 'book' || $_GET['page'] == 'register' || $_GET['page'] == 'login' || $_GET['page'] == 'updateBook'  ){
+      if($_GET['page'] == 'home' || $_GET['page'] == 'rooms' || $_GET['page'] == 'book' || $_GET['page'] == 'register' || $_GET['page'] == 'login' || $_GET['page'] == 'updateBook' || $_GET['page'] == 'updateRegister'  ){
         include 'pages/'.$_GET['page'].'.php';
       }else{
         include 'pages/404.php';
@@ -143,6 +143,7 @@
   </footer>
 
 
+  <script src="views/JS/ajax.js" type="text/javascript"></script>
   
 </body>
 </html>

@@ -37,7 +37,7 @@ class FormController{
 
             }else{
                 $data = array(
-                  "room_name" => $_POST['room_name'],
+                  "room_name" => $_POST['roomName'],
                   "checkin" => $_POST['checkin'],
                   "checkout" => $_POST['checkout'],
                   "first_name" => $_POST['firstName'],
@@ -140,7 +140,7 @@ class FormController{
 
             }else{
                 $data = array(
-                   "id" => $_POST['id_booking'],
+                  "id" => $_POST['id_booking'],
                   "room_name" => $_POST['editroom_name'],
                   "checkin" => $_POST['editcheckin'],
                   "checkout" => $_POST['editcheckout'],
