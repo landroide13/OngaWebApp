@@ -34,7 +34,7 @@ if(isset($_GET['id'])){
       </div>
       <div class="card-body">
         <a type="submit" class="btn btn-info" href="./index.php?page=book">Back</a>
-        <a type="submit" class="btn btn-danger"> Delete </a>
+        <a type="submit" class="btn btn-danger" href="./index.php?page=deleteBook&id=<?php echo $booking[0]; ?>"> Delete </a>
       </div>
     </div>
 

@@ -5,14 +5,11 @@
     $value = $_GET['id'];
 
     $booking = FormController::getBook($item, $value);
-
-    print_r($booking);
-
+    // print_r($booking);
   }
 
   $rooms = FormController::getRooms();
 
- 
 ?>
 
 <script>
@@ -39,7 +36,7 @@
     <div class="card col-md-8 offset-md-2 py-4 px-2 text-white bg-dark">
 
       <form method="POST">
-        <h5>Edit Booking</h5>
+        <h5>Edit Booking #<?php echo $booking[0]; ?></h5>
         <div class="py-2">
 
           <select class="form-select form-select-lg mb-3" name="editroom_name" required>
@@ -58,7 +55,7 @@
         <div class="py-2 picker">
           <div class="input-group date" data-provide="datepicker">
             <label for="exampleInputEmail1" class="form-label">Edit Check In Date</label>
-              <input type="text" name="editcheckin" id="checkin" value="<?php echo $value['checkin'] ?>">
+              <input type="text" name="editcheckin" id="checkin" value="<?php echo $booking[2]; ?>">
               <div class="input-group-addon">
                   <span class="glyphicon glyphicon-th"></span>
               </div>
@@ -68,7 +65,7 @@
         <div class="py-2 picker">
           <div class="input-group date" data-provide="datepicker">
             <label for="exampleInputEmail1" class="form-label">Edit Out Date</label>
-              <input type="text" name="editcheckout" id="checkout" value="<?php echo $value['checkout'] ?>">
+              <input type="text" name="editcheckout" id="checkout" value="<?php echo $booking[3]; ?>">
               <div class="input-group-addon">
                   <span class="glyphicon glyphicon-th"></span>
               </div>
@@ -77,19 +74,20 @@
 
         <div class="py-2">
           <label for="exampleInputEmail1" class="form-label">Edit First Name</label>
-          <input type="text" class="form-control" name="editfirstName" value="<?php echo $value['first_name'] ?>"  required>
+          <input type="text" class="form-control" name="editfirstName" value="<?php echo $booking[4]; ?>"  required>
         </div>
         <div class="py-2">
           <label for="exampleInputEmail1" class="form-label">Edit Last Name</label>
-          <input type="text" class="form-control" name="editlastName" value="<?php echo $value['last_name'] ?>"  required>
+          <input type="text" class="form-control" name="editlastName" value="<?php echo $booking[5]; ?>"  required>
         </div>
         <div class="mb-3">
           <label for="exampleFormControlTextarea1" class="form-label">Edit Extras</label>
-          <textarea class="form-control" id="exampleFormControlTextarea1" name="editextras" value="<?php echo $value['extras'] ?>" rows="3"></textarea>
+          <textarea class="form-control" id="exampleFormControlTextarea1" name="editextras" value="" rows="3"><?php echo $booking[6]; ?></textarea>
         </div>
 
         <div class="py-2">
           <button type="Update" class="btn btn-info">Update</button>
+          <a type="submit" class="btn btn-success" href="./index.php?page=book">Back</a>
         </div>
 
         <input type="hidden" class="form-control" name="id_booking" value="<?php echo $value['id'] ?>" >
