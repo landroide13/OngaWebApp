@@ -8,7 +8,6 @@ if(isset($_GET['id'])){
     $booking = FormController::getBook($item, $value);
 
     // print_r($booking);
-
   }
 
 ?>

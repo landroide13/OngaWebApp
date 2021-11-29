@@ -20,7 +20,7 @@ if(isset($_GET['id'])){
 
     <div class="card text-white bg-dark">
       <div class="card-header">
-        <h5 class="card-title">Delete Booking</div>
+        <h5 class="card-title">Delete Booking #<?php echo $booking[0]; ?></div>
       </div>
       <ul class="list-group list-group-flush">
         <li class="list-group-item">Room: <?php echo $booking[1]; ?></li>
