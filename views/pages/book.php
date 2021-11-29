@@ -60,7 +60,7 @@
       </div>
 
       <div class="py-2 picker">
-        <div class="input-group date" data-provide="datepicker">
+        <div class="input-group date mb-2" data-provide="datepicker">
           <label for="exampleInputEmail1" class="form-label">Check Out Date</label>
             <input type="text" name="checkout" id="checkout">
             <div class="input-group-addon">
@@ -121,16 +121,10 @@
           <td><?php echo $value['checkin']; ?></td>
 
           <td class="btn-group">
-            <a type="button" href="./bookInfo.html" class="btn btn-info"><i class="fas fa-info-circle"></i></a>
+            <a type="button" href="./index.php?page=showBook&id=<?php echo $value['id']; ?>"" class="btn btn-info"><i class="fas fa-info-circle"></i></a>
             <a type="button" href="./index.php?page=updateBook&id=<?php echo $value['id']; ?>" class="btn btn-warning"><i class="fas fa-edit"></i></a>
-            <form action="post">
               <input type="hidden" class="form-control" name="deleteBook" value="<?php echo $value['id']; ?>">
-              <button type="submit" class="btn btn-danger"><i class="fas fa-trash"></i></a>
-              <?php
-                $deleteBook = new FormController;
-                $deleteBook -> ctrDeleteBook();
-              ?>
-            </form>
+            <a type="button" class="btn btn-danger" href="./index.php?page=deleteBook&id=<?php echo $value['id']; ?>"><i class="fas fa-trash"></i></a>
           </td>
 
         </tr>
@@ -138,7 +132,6 @@
 
     </tbody>
   </table>
-
 
   <h3>Search Room</h3>
 
