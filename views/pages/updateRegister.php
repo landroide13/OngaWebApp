@@ -47,8 +47,8 @@
 
   <?php
   
-    // $updateBooking = new FormController;
-    // $updateBooking -> updateBook();
+    // $updateRegister = new FormController;
+    // $updateRegister -> updateRegister();
   
   ?>
 

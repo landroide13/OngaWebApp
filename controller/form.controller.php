@@ -180,6 +180,36 @@ class FormController{
         }
     }
 
+    public function ctrUpdateRegister(){
+        if(isset($_POST['editfirstName'])){
+            $table = "register";
+
+            $data = array(
+                "first_name" => $_POST['editfirstName'],
+                "last_name" => $_POST['editlastName'],
+                "email" => $_POST['editemail'],
+                "password" => $_POST['editpass'],
+            );
+            $response = ModelForms::mdlRegister($table, $data);
+        }
+        return $response;
+
+    }
+
+    public function ctrDeleteRegister(){
+        if(isset($_POST['deleteRegister'])){
+
+            $table = 'register';
+            $value = $_POST['deleteRegister'];
+
+            $response = ModelForms::mdlDeleteRegister($table, $value);
+
+            return $response;
+        }
+    }
+
+
+
 }
 
 

@@ -138,6 +138,49 @@ require_once 'connection.php';
 
         }
 
+        static public function mdlUpdateRegister($table, $data){ 
+
+            $stmt = Connection::connect() -> prepare("UPDATE $table SET first_name = :first_name, last_name = :last_name, email = :email, password = :password WHERE user_id = :id");
+            
+            $stmt -> bindParam(":first_name", $data['first_name'], PDO::PARAM_STR);
+            $stmt -> bindParam(":last_name", $data['last_name'], PDO::PARAM_STR);
+            $stmt -> bindParam(":email", $data['email'], PDO::PARAM_STR);
+            $stmt -> bindParam(":password", $data['password'], PDO::PARAM_STR);
+            $stmt -> bindParam(":id", $data['id'], PDO::PARAM_INT);
+            
+
+            if($stmt -> execute()){
+               return 'Ok';
+            }else{
+                print_r(Connection::connect()-> errorInfo());
+            }
+
+            $stmt -> close();
+            $stmt = null;
+
+        }
+
+        static public function mdlDeleteRegister($table, $value){ 
+
+            $stmt = Connection::connect() -> prepare("DELETE FROM $table WHERE id = :id");
+            
+            $stmt -> bindParam(":id", $value, PDO::PARAM_INT);
+            
+
+            if($stmt -> execute()){
+               return 'Ok';
+            }else{
+                print_r(Connection::connect()-> errorInfo());
+            }
+
+            $stmt -> close();
+            $stmt = null;
+
+        }
+
+
+
+
 
     }
 
