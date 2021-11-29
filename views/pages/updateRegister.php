@@ -1,12 +1,12 @@
 
 <?php
-  if(isset($_GET['user_id'])){
+  if(isset($_GET['id'])){
 
     $item = 'user_id';
-    $value = $_GET['user_id'];
+    $value = $_GET['id'];
 
     $customer = FormController::getCustomer($item, $value);
-    print_r($customer);
+    // print_r($customer);
   }
 
 ?>
@@ -31,7 +31,7 @@
         </div>
         <div class="mb-3">
           <label for="exampleFormControlTextarea1" class="form-label">Edit Email</label>
-          <input type="text" class="form-control" name="emailName" value="<?php echo $customer[3]; ?>"  required>
+          <input type="text" class="form-control" name="editemail" value="<?php echo $customer[3]; ?>"  required>
         </div>
 
         <div class="py-2">

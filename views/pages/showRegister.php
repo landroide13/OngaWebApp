@@ -1,14 +1,14 @@
 
 <?php
 
-if(isset($_GET['user_id'])){
+if(isset($_GET['id'])){
 
     $item = 'user_id';
-    $value = $_GET['user_id'];
+    $value = $_GET['id'];
 
     $customer = FormController::getCustomer($item, $value);
 
-    print_r($customer);
+    // print_r($customer);
   }
 
 ?>
@@ -23,9 +23,9 @@ if(isset($_GET['user_id'])){
       </div>
       <div class="card-body">
         <ul class="list-group list-group-flush">
-          <li class="list-group-item">Room: <?php echo $customer[1]; ?></li>
-          <li class="list-group-item">CheckIn: <?php echo $customer[2]; ?></li>
-          <li class="list-group-item">Checkout: <?php echo $customer[3]; ?></li>
+          <li class="list-group-item">First Name: <?php echo $customer[1]; ?></li>
+          <li class="list-group-item">Last Name: <?php echo $customer[2]; ?></li>
+          <li class="list-group-item">Email: <?php echo $customer[3]; ?></li>
         </ul>
       </div>
       <div class="card-body">
