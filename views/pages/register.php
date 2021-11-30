@@ -22,10 +22,6 @@ if(!isset($_SESSION['validLogin'])){
     
 }
 
-
-
-
-
   $customers = FormController::getCustomer(null, null);
 ?>
 

@@ -1,7 +1,4 @@
 
-
-
-
 <div id="page-content" class="container py-5 wrapper">
 
   <section class="sectionA">
