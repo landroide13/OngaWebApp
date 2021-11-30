@@ -26,13 +26,11 @@
         
         <button type="submit" class="btn btn-info">Login</button>
       </form>
+      
     </div>
-
   </section>
 
-  <section class="sectionB">
-
-  </section>
+  <section class="sectionB"></section>
 
 </div>
 

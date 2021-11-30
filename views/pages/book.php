@@ -1,4 +1,28 @@
 <?php
+
+if(!isset($_SESSION['validLogin'])){
+
+  echo '<script>
+            window.location = "./index.php?page=home";
+          </script>';
+
+    return;
+
+  }else{
+
+    if($_SESSION['validLogin'] != 'ok'){
+
+    echo '<script>
+            window.location = "./index.php?page=login";
+          </script>';
+
+    return;
+  }
+    
+}
+
+
+
  $rooms = FormController::getRooms();
  $bookings = FormController::getBook(null, null);
 

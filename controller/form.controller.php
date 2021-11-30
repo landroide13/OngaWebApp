@@ -74,9 +74,11 @@ class FormController{
 
             $answer = ModelForms::mdlGet($table, $item, $value);
 
+            echo $answer;
+
             if($answer['email'] == $_POST['email'] && $answer['password'] == $_POST['password']){
 
-                // $_SESSION['login'] = 'ok';
+                $_SESSION['validLogin'] = 'ok';
 
                 echo '<script>
                         if(window.history.replaceState){

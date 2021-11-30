@@ -1,19 +1,26 @@
 
 <?php
      
-    //  if(isset($_SESSION["login"])){
-    //     if($_SESSION['login'] != 'ok'){
-    //         echo '<script>
-    //             window.location = "./index.php?page=login";
-    //         </script>';
-    //         return;
-    //     }
-    //  }else{
-    //     '<script>
-    //         window.location = "./index.php?page=login";
-    //         </script>';
-    //         return;
-    //  }
+if(!isset($_SESSION['validLogin'])){
+
+  echo '<script>
+            window.location = "./index.php?page=home";
+          </script>';
+
+    return;
+
+  }else{
+
+    if($_SESSION['validLogin'] != 'ok'){
+
+    echo '<script>
+            window.location = "./index.php?page=login";
+          </script>';
+
+    return;
+  }
+    
+}
 
 
     $rooms = FormController::getRooms();
