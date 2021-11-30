@@ -128,7 +128,7 @@ require_once 'connection.php';
             
 
             if($stmt -> execute()){
-               return 'Ok';
+               return 'ok';
             }else{
                 print_r(Connection::connect()-> errorInfo());
             }

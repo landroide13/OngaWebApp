@@ -170,13 +170,24 @@ class FormController{
     }
 
     public function ctrDeleteBook(){
-        if(isset($_POST['deleteBook'])){
+        if(isset($_POST['idDelete'])){
 
             $table = 'book';
-            $value = $_POST['deleteBook'];
+            $value = $_POST['idDelete'];
 
             $response = ModelForms::mdlDeleteBook($table, $value);
 
+            if($response == 'ok'){
+
+                echo '<script>
+                        if(window.history.replaceState){
+                            window.history.replaceState(null, null, window.location.href);
+                        }
+                        window.location = "./index.php?page=book";
+                     
+                      </script>';
+
+            }
             return $response;
         }
     }
@@ -220,8 +231,8 @@ class FormController{
 
         }
         return $response;
-
     }
+
 
     public function ctrDeleteRegister(){
         if(isset($_POST['idDelete'])){
