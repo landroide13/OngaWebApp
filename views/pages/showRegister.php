@@ -24,7 +24,7 @@ if(!isset($_SESSION['validLogin'])){
 
 if(isset($_GET['id'])){
 
-    $item = 'user_id';
+    $item = 'id';
     $value = $_GET['id'];
 
     $customer = FormController::getCustomer($item, $value);
@@ -50,7 +50,7 @@ if(isset($_GET['id'])){
         </ul>
       </div>
       <div class="card-body">
-        <a type="submit" class="btn btn-info" href="./index.php?page=book">Back</a>
+        <a type="submit" class="btn btn-info" href="./index.php?page=register">Back</a>
         <a type="submit" class="btn btn-danger" href="./index.php?page=deleteRegister&id=<?php echo $customer[0]; ?>"> Delete </a>
       </div>
     </div>

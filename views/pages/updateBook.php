@@ -112,7 +112,7 @@ if(!isset($_SESSION['validLogin'])){
           <a type="submit" class="btn btn-success" href="./index.php?page=book">Back</a>
         </div>
 
-        <input type="hidden" class="form-control" name="id_booking" value="<?php echo $value['id'] ?>" >
+        <input type="hidden" class="form-control" name="id" value="<?php echo $value['id'] ?>" >
         
       </form>
 

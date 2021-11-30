@@ -125,7 +125,6 @@ class FormController{
     }
 
     public function updateBook(){
-
         if(isset($_POST['editroom_name'])){
               $table = 'book';
               $msg = 'Error';
@@ -142,7 +141,7 @@ class FormController{
 
             }else{
                 $data = array(
-                  "id" => $_POST['id_booking'],
+                  "id" => $_POST['id'],
                   "room_name" => $_POST['editroom_name'],
                   "checkin" => $_POST['editcheckin'],
                   "checkout" => $_POST['editcheckout'],
@@ -184,27 +183,65 @@ class FormController{
 
     public function ctrUpdateRegister(){
         if(isset($_POST['editfirstName'])){
+
+            if($_POST['updatePass'] != ''){
+                $password = $_POST['updatePass'];
+            }else{
+                $password = $_POST['currentpass'];
+            }
             $table = "register";
 
             $data = array(
+                "id" => $_POST['id'],
                 "first_name" => $_POST['editfirstName'],
                 "last_name" => $_POST['editlastName'],
                 "email" => $_POST['editemail'],
-                "password" => $_POST['editpass'],
+                "password" => $password,
             );
-            $response = ModelForms::mdlRegister($table, $data);
+            $response = ModelForms::mdlUpdateRegister($table, $data);
+        }
+
+        if($response == 'ok'){
+
+            echo '<script>
+                        if(window.history.replaceState){
+                            window.history.replaceState(null, null, window.location.href);
+                        }
+                     </script>';
+
+            '<script>
+                setTimeout(function{
+                    window.location = "./index.php?page=register";
+                }, 2000);
+            
+            </script>';         
+
+            echo '<div class="alert alert-success text-center">User Updated</div>';
+
         }
         return $response;
 
     }
 
     public function ctrDeleteRegister(){
-        if(isset($_POST['deleteRegister'])){
+        if(isset($_POST['idDelete'])){
 
             $table = 'register';
-            $value = $_POST['deleteRegister'];
+            $value = $_POST['idDelete'];
 
             $response = ModelForms::mdlDeleteRegister($table, $value);
+
+            if($response == 'ok'){
+
+                echo '<script>
+                        if(window.history.replaceState){
+                            window.history.replaceState(null, null, window.location.href);
+                        }
+                        window.location = "./index.php?page=register";
+                     
+                      </script>';
+
+            }
 
             return $response;
         }

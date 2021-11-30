@@ -43,47 +43,17 @@
 
     <?php if(isset($_GET['page'])): ?>
 
-      <?php if($_GET['page'] == 'home'): ?>  
-        <li class="nav-item">
-          <a class="nav-link active text-black" aria-current="page" href="./index.php?page=home">Home</a>
-        </li>
-      <?php else: ?>
-      <li class="nav-item">
-          <a class="nav-link text-white" aria-current="page" href="./index.php?page=home">Home</a>
-        </li>
-      <?php endif ?> 
-
-      <?php if($_GET['page'] == 'rooms'): ?> 
-        <li class="nav-item">
-          <a class="nav-link active text-black" href="./index.php?page=rooms">Rooms</a>
-        </li>
-      <?php else: ?>
-      <li class="nav-item">
-          <a class="nav-link text-white" href="./index.php?page=rooms">Rooms</a>
-        </li>
-      <?php endif ?>
-
-      <?php if($_GET['page'] == 'book'): ?>
-        <li class="nav-item">
-          <a class="nav-link active text-black" href="./index.php?page=book">Book</a>
-        </li>
-      <?php else: ?>
-      <li class="nav-item">
-          <a class="nav-link text-white" href="./index.php?page=book">Book</a>
-        </li>
-      <?php endif ?>
-
-      <?php if($_GET['page'] == 'register'): ?>
-        <li class="nav-item">
-          <a class="nav-link text-black active" href="./index.php?page=register">Register</a>
-        </li>
-      <?php else: ?>
-      <li class="nav-item">
-          <a class="nav-link text-white" href="./index.php?page=register">Register</a>
-        </li>
-      <?php endif ?>
-
       <?php if($_SESSION['validLogin'] != 'ok'): ?>
+
+        <?php if($_GET['page'] == 'home'): ?>  
+          <li class="nav-item">
+            <a class="nav-link active text-black" aria-current="page" href="./index.php?page=home">Home</a>
+          </li>
+        <?php else: ?>
+        <li class="nav-item">
+            <a class="nav-link text-white" aria-current="page" href="./index.php?page=home">Home</a>
+          </li>
+        <?php endif ?> 
 
         <?php if($_GET['page'] == 'login'): ?>
           <li class="nav-item">
@@ -96,6 +66,36 @@
         <?php endif ?>
 
       <?php else: ?>
+
+        <?php if($_GET['page'] == 'rooms'): ?> 
+          <li class="nav-item">
+            <a class="nav-link active text-black" href="./index.php?page=rooms">Rooms</a>
+          </li>
+        <?php else: ?>
+        <li class="nav-item">
+            <a class="nav-link text-white" href="./index.php?page=rooms">Rooms</a>
+          </li>
+        <?php endif ?>
+
+        <?php if($_GET['page'] == 'book'): ?>
+          <li class="nav-item">
+            <a class="nav-link active text-black" href="./index.php?page=book">Book</a>
+          </li>
+        <?php else: ?>
+        <li class="nav-item">
+            <a class="nav-link text-white" href="./index.php?page=book">Book</a>
+          </li>
+        <?php endif ?>
+
+        <?php if($_GET['page'] == 'register'): ?>
+          <li class="nav-item">
+            <a class="nav-link text-black active" href="./index.php?page=register">Register</a>
+          </li>
+        <?php else: ?>
+        <li class="nav-item">
+            <a class="nav-link text-white" href="./index.php?page=register">Register</a>
+          </li>
+        <?php endif ?>
 
         <?php if($_GET['page'] == 'logout'): ?>
           <li class="nav-item">
@@ -110,27 +110,30 @@
       <?php endif ?>
 
     <?php else: ?> 
-      <li class="nav-item">
-        <a class="nav-link active" aria-current="page" href="./index.php?page=home">Home</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link text-white" href="./index.php?page=rooms">Rooms</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link text-white" href="./index.php?page=book">Book</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link text-white" href="./index.php?page=register">Register</a>
-      </li>
-
+      
       <?php if($_SESSION['validLogin'] != 'ok'): ?>
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="./index.php?page=home">Home</a>
+        </li>
+
         <li class="nav-item">
           <a class="nav-link text-white" href="./index.php?page=login">Login</a>
         </li>
       <?php else: ?>
+
+        <li class="nav-item">
+          <a class="nav-link text-white" href="./index.php?page=rooms">Rooms</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white" href="./index.php?page=book">Book</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white" href="./index.php?page=register">Register</a>
+        </li>
         <li class="nav-item">
           <a class="nav-link text-white" href="./index.php?page=logout">Logout</a>
         </li>
+
       <?php endif ?>  
 
     <?php endif ?>

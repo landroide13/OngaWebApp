@@ -23,7 +23,7 @@ if(!isset($_SESSION['validLogin'])){
 
   if(isset($_GET['id'])){
 
-    $item = 'user_id';
+    $item = 'id';
     $value = $_GET['id'];
 
     $customer = FormController::getCustomer($item, $value);
@@ -39,24 +39,40 @@ if(!isset($_SESSION['validLogin'])){
     <div class="card col-md-8 offset-md-2 py-4 px-2 text-white bg-dark">
 
       <form method="POST">
-        <h5>Edit Customer #<?php echo $customer[0]; ?></h5>
+        <h5>Edit Customer #<?php echo $customer["id"]; ?></h5>
         <div class="py-2">
 
         <div class="py-2">
           <label for="exampleInputEmail1" class="form-label">Edit First Name</label>
-          <input type="text" class="form-control" name="editfirstName" value="<?php echo $customer[1]; ?>"  required>
+          <input type="text" class="form-control" name="editfirstName" value="<?php echo $customer["first_name"]; ?>">
         </div>
         <div class="py-2">
           <label for="exampleInputEmail1" class="form-label">Edit Last Name</label>
-          <input type="text" class="form-control" name="editlastName" value="<?php echo $customer[2]; ?>"  required>
+          <input type="text" class="form-control" name="editlastName" value="<?php echo $customer["last_name"]; ?>">
         </div>
         <div class="mb-3">
           <label for="exampleFormControlTextarea1" class="form-label">Edit Email</label>
-          <input type="text" class="form-control" name="editemail" value="<?php echo $customer[3]; ?>"  required>
+          <input type="text" class="form-control" name="editemail" value="<?php echo $customer["email"]; ?>">
+        </div>
+
+        <div class="mb-3">
+          <label for="exampleFormControlTextarea1" class="form-label">Password</label>
+          <input type="password" class="form-control" name="updatePass" value="">
+
+          <input type="hidden" class="form-control" id="psw" name="currentpass" value="<?php echo $customer["password"]; ?>">
+          <input type="hidden" class="form-control" id="uid" name="id" value="<?php echo $customer["id"]; ?>">
         </div>
 
         <div class="py-2">
-          <button type="Update" class="btn btn-info">Update</button>
+
+           <?php
+            $updateRegister = new FormController;
+            $updateRegister -> ctrUpdateRegister();
+          ?>
+
+
+          <button type="submit" class="btn btn-info">Update</button>
+
           <a type="submit" class="btn btn-success" href="./index.php?page=register">Back</a>
         </div>
         
@@ -65,13 +81,6 @@ if(!isset($_SESSION['validLogin'])){
     </div>
 
   </section>
-
-  <?php
-  
-    // $updateRegister = new FormController;
-    // $updateRegister -> updateRegister();
-  
-  ?>
 
 </div>
 
