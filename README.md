@@ -7,6 +7,8 @@
    Delete Booking Done.
    Read Booking Done.
 
+[X] Ajax Not Done.   
+
 [x] Login Fully functional.
     Login with some of the users in database.
 

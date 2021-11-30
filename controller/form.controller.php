@@ -149,8 +149,8 @@ class FormController{
                   "last_name" => $_POST['editlastName'],
                   "extras" => $_POST['editextras'],
                 );
-                $response = ModelForms::mdlUpdateBook($table, $data);
             }
+            $response = ModelForms::mdlUpdateBook($table, $data);
         }
 
         if($response == 'ok'){
