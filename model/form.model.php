@@ -15,7 +15,7 @@ require_once 'connection.php';
             $stmt -> bindParam(":password", $data['password'], PDO::PARAM_STR);
 
             if($stmt -> execute()){
-               return 'Ok';
+               return 'ok';
             }else{
                 print_r(Connection::connect()-> errorInfo());
             }
@@ -37,7 +37,7 @@ require_once 'connection.php';
             $stmt -> bindParam(":extras", $data['extras'], PDO::PARAM_STR);
             
             if($stmt -> execute()){
-               return 'Ok';
+               return 'ok';
             }else{
                 print_r(Connection::connect()-> errorInfo());
             }

@@ -21,21 +21,27 @@ class FormController{
 
     static public function ctrBook(){
 
-        if(isset($_POST['submit'])){
+        if(isset($_POST['roomName'])){
+
               $table = 'book';
-              $msg = 'Error';
+    
               $currenDate = new Date(date("Y-m-d")); 
 
               //Change Format date
               $dateIn = new DateTime($_POST['checkin']);
               $dateOut = new DateTime($_POST['checkout']); 
 
-            if($dateIn > $dateOut && $dateIn < $currenDate){
+            // if($dateIn > $dateOut && $dateIn < $currenDate){
 
-                $msg .= " wrong chooise of dates, try again";
-                echo $msg;
+            //     echo '<div class="alert alert-danger">wrong chooise of dates, try again</div>';
+            //     echo '<script>
+            //            if(window.history.replaceState){
+            //                window.history.replaceState(null, null, window.location.href);
+            //            }
+            //            window.location = "./index.php?page=book";
+            //          </script>';
 
-            }else{
+            // }else{
                 $data = array(
                   "room_name" => $_POST['roomName'],
                   "checkin" => $_POST['checkin'],
@@ -45,8 +51,28 @@ class FormController{
                   "extras" => $_POST['extras'],
                 );
                 $response = ModelForms::mdlBook($table, $data);
-            }
+            //}
         }
+        if($response == 'ok'){
+
+            echo '<script>
+                        if(window.history.replaceState){
+                            window.history.replaceState(null, null, window.location.href);
+                        }
+                     </script>';
+
+                echo '<div class="alert alert-success">Booking Created</div>';     
+
+        }else{
+
+                echo '<script>
+                        if(window.history.replaceState){
+                            window.history.replaceState(null, null, window.location.href);
+                        }
+                     </script>';
+
+                echo '<div class="alert alert-danger">Error Try again</div>';     
+            };
         return $response;
     } 
 
@@ -71,7 +97,7 @@ class FormController{
             $table = 'register';
             $item = 'email';
             $value = $_POST['email'];
-
+        
             $answer = ModelForms::mdlGet($table, $item, $value);
 
             echo $answer;
@@ -79,6 +105,13 @@ class FormController{
             if($answer['email'] == $_POST['email'] && $answer['password'] == $_POST['password']){
 
                 $_SESSION['validLogin'] = 'ok';
+
+                //Set Session Vars.
+                $_SESSION["user_id"] = $answer['id'];
+                $_SESSION["user_first_name"] = $answer['first_name'];
+                $_SESSION["user_last_name"] = $answer['last_name'];
+                $_SESSION["user_email"] = $answer['email'];
+
 
                 echo '<script>
                         if(window.history.replaceState){

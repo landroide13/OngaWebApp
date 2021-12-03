@@ -10,7 +10,7 @@ if(!isset($_SESSION['validLogin'])){
 
   }else{
 
-    if($_SESSION['validLogin'] != 'ok'){
+    if($_SESSION['validLogin'] != 'ok'){ 
 
     echo '<script>
             window.location = "./index.php?page=login";
@@ -18,10 +18,13 @@ if(!isset($_SESSION['validLogin'])){
 
     return;
   }
-    
+
 }
 
+print_r($_SESSION);
 
+ $id = $_SESSION['user_id'];
+ $first = $_SESSION['user_first_name'];
 
  $rooms = FormController::getRooms();
  $bookings = FormController::getBook(null, null);
@@ -57,16 +60,17 @@ if(!isset($_SESSION['validLogin'])){
 
   <div class="card col-md-8 offset-md-2 py-4 px-2 text-white bg-dark">
 
-    <form method="POST">
-      <h5>Make Booking</h5>
+    <form method="post">
+
+      <h5>Make Booking for: <?php echo " ".$first ?></h5>
       <div class="py-2">
 
-        <select class="form-select form-select-lg mb-3" name="roomName" required>
+        <select class="form-select form-select-lg mb-3" name="roomName">
 
           <option disabled selected>Choose a Room</option>
            <?php foreach($rooms as $key => $value): ?> 
 
-             <option type="text" value="<?php echo $value['name'] ?>"><?php echo $value['name'] ?></option>
+             <option type="text" value="<?php echo $value['id'] ?>"><?php echo $value['name'] ?></option>
              
            <?php endforeach ?>
         </select>
@@ -95,7 +99,8 @@ if(!isset($_SESSION['validLogin'])){
 
       <div class="py-2">
         <label for="exampleInputEmail1" class="form-label">Customer First Name</label>
-        <input type="text" class="form-control" name="firstName"  required>
+        <input type="text" class="form-control" value="<?php echo $first ?>" name="firstName"  required>
+        <input type="hidden" class="form-control" value="<?php echo $id ?>" name="uid" required>
       </div>
       <div class="py-2">
         <label for="exampleInputEmail1" class="form-label">Customer Last Name</label>
@@ -113,7 +118,9 @@ if(!isset($_SESSION['validLogin'])){
       <?php
         $booking = FormController::ctrBook();
 
-        print_r($booking);
+        ini_set('display_startup_errors', 1);
+        ini_set('display_startup_errors', 1);
+        error_reporting(E_ALL);
       ?>
       
     </form>
