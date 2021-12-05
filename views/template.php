@@ -97,6 +97,16 @@
           </li>
         <?php endif ?>
 
+        <?php if($_GET['page'] == 'statement'): ?>
+          <li class="nav-item">
+            <a class="nav-link text-black active" href="./index.php?page=statement">Privacy</a>
+          </li>
+        <?php else: ?>
+        <li class="nav-item">
+            <a class="nav-link text-white" href="./index.php?page=statement">Privacy</a>
+          </li>
+        <?php endif ?>
+
         <?php if($_GET['page'] == 'logout'): ?>
           <li class="nav-item">
             <a class="nav-link text-black active" href="./index.php?page=logout">Logout</a>
@@ -131,6 +141,9 @@
           <a class="nav-link text-white" href="./index.php?page=register">Register</a>
         </li>
         <li class="nav-item">
+          <a class="nav-link text-white" href="./index.php?page=statement">Privacy</a>
+        </li>
+        <li class="nav-item">
           <a class="nav-link text-white" href="./index.php?page=logout">Logout</a>
         </li>
 
@@ -145,7 +158,8 @@
       if($_GET['page'] == 'home' || $_GET['page'] == 'rooms' || $_GET['page'] == 'book' || $_GET['page'] == 'register' || 
       $_GET['page'] == 'login' || $_GET['page'] == 'updateBook' || $_GET['page'] == 'updateRegister' || 
       $_GET['page'] == 'deleteBook' || $_GET['page'] == 'showBook' || $_GET['page'] == 'showRoom' || $_GET['page'] == 'deleteRoom' ||
-      $_GET['page'] == 'showBook' || $_GET['page'] == 'showRegister' || $_GET['page'] == 'deleteRegister' || $_GET['page'] == 'logout'){
+      $_GET['page'] == 'showBook' || $_GET['page'] == 'showRegister' || $_GET['page'] == 'deleteRegister' || $_GET['page'] == 'logout'
+      || $_GET['page'] == 'statement'){
         include 'pages/'.$_GET['page'].'.php';
       }else{
         include 'pages/404.php';
