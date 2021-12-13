@@ -23,7 +23,7 @@ class FormController{
 
         if(isset($_POST['roomName'])){
 
-              $table = 'book';
+              $table = "book";
     
               $currenDate = new Date(date("Y-m-d")); 
 
@@ -31,17 +31,17 @@ class FormController{
               $dateIn = new DateTime($_POST['checkin']);
               $dateOut = new DateTime($_POST['checkout']); 
 
-            // if($dateIn > $dateOut && $dateIn < $currenDate){
+            if($dateIn > $dateOut && $dateIn < $currenDate){
 
-            //     echo '<div class="alert alert-danger">wrong chooise of dates, try again</div>';
-            //     echo '<script>
-            //            if(window.history.replaceState){
-            //                window.history.replaceState(null, null, window.location.href);
-            //            }
-            //            window.location = "./index.php?page=book";
-            //          </script>';
+                echo '<div class="alert alert-danger">wrong chooise of dates, try again</div>';
+                echo '<script>
+                       if(window.history.replaceState){
+                           window.history.replaceState(null, null, window.location.href);
+                       }
+                       window.location = "./index.php?page=book";
+                     </script>';
 
-            // }else{
+            }else{
                 $data = array(
                   "room_name" => $_POST['roomName'],
                   "checkin" => $_POST['checkin'],
@@ -51,7 +51,7 @@ class FormController{
                   "extras" => $_POST['extras'],
                 );
                 $response = ModelForms::mdlBook($table, $data);
-            //}
+            }
         }
         if($response == 'ok'){
 
@@ -286,7 +286,6 @@ class FormController{
                       </script>';
 
             }
-
             return $response;
         }
     }

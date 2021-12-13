@@ -1,5 +1,7 @@
 <?php
 
+include "ChromePHP.php";
+
 if(!isset($_SESSION['validLogin'])){
 
   echo '<script>
@@ -22,12 +24,16 @@ if(!isset($_SESSION['validLogin'])){
 }
 
 print_r($_SESSION);
+print_r($booking);
 
  $id = $_SESSION['user_id'];
  $first = $_SESSION['user_first_name'];
 
  $rooms = FormController::getRooms();
  $bookings = FormController::getBook(null, null);
+
+ //ChromePHP::log($rooms);
+ //ChromePHP::log($bookings);
 
 ?>
 
@@ -99,7 +105,7 @@ print_r($_SESSION);
 
       <div class="py-2">
         <label for="exampleInputEmail1" class="form-label">Customer First Name</label>
-        <input type="text" class="form-control" value="<?php echo $first ?>" name="firstName"  required>
+        <input type="text" class="form-control" name="firstName"  required>
         <input type="hidden" class="form-control" value="<?php echo $id ?>" name="uid" required>
       </div>
       <div class="py-2">
@@ -117,10 +123,7 @@ print_r($_SESSION);
 
       <?php
         $booking = FormController::ctrBook();
-
-        ini_set('display_startup_errors', 1);
-        ini_set('display_startup_errors', 1);
-        error_reporting(E_ALL);
+        //ChromePHP::log($booking);
       ?>
       
     </form>
